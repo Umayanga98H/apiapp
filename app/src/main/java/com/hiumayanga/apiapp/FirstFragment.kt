@@ -45,23 +45,24 @@ class FirstFragment : Fragment() {
             user1Call.enqueue(object : Callback<User> {
 
                 override fun onResponse(call: Call<User>?, response: Response<User>?) {
+                    if(response?.body() !=null){
+                        val body =response.body();
+                        body?.let{ it1 -> Log.i("FirstFragment: Email",it1?.email)
+                    }
 
                 }
 
                 override fun onFailure(call: Call<User>?, t: Throwable?) {
-                    if(response?.body() !=null){
-                        val body =response.body();
-                        Log.i("FirstFragment: Email",body.email)
-                    }
                 }
             })
+            }
 
 //       val body=user1Call.execute().body()
  //           if (body != null) {
  //               Log.i("FirstFragment: Email",body.email)
  //           }
 
-        }
+
     }
 
     override fun onDestroyView() {
@@ -69,3 +70,4 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 }
+    }
